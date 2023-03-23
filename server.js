@@ -3,8 +3,9 @@ const path = require('path');
 const noteData = require('./db/db.json');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
+require('dotenv').config();
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
