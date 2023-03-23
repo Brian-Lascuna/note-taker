@@ -17,5 +17,15 @@
 		"title": "New note",
 		"text": "A new note",
 		"note_id": "8036638d-a0cc-45eb-8885-ad8d9ecf5461"
+	},
+	{
+		"title": "Test",
+		"text": "Test",
+		"note_id": "6a047e2f-1a76-4054-85c6-91a8a8a8d1c1"
+	},
+	{
+		"title": "Some note",
+		"text": "another random note",
+		"note_id": "e10e6d76-5c54-4a57-8d9f-91bd585cd8f1"
 	}
 ]
