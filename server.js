@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const noteData = require('./db/db.json');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 require('dotenv').config();
@@ -23,7 +22,12 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
   });
 
-app.get('/api/notes', (req, res) => res.json(noteData));
+app.get('/api/notes', (req, res) => {
+  fs.readFile('./db/db.json', function (err, data) {
+    let json = JSON.parse(data);
+    res.json(json)
+    });
+});
 
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
@@ -54,7 +58,28 @@ app.post('/api/notes', (req, res) => {
     } else {
       res.status(500).json('Error in posting note')
     }
-})
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    const noteID = req.params.id;
+    console.log(noteID);
+
+    fs.readFile('./db/db.json', function (err, data) {
+      let json = JSON.parse(data);
+      console.log(json);
+      for (let i = 0; i < json.length; i++) {
+        if (json[i].id == noteID) {
+          json.splice(i, 1);
+        }
+      }
+      
+      fs.writeFile('./db/db.json', JSON.stringify(json, null, "\t"), function (err) {
+        if (err) throw err;
+        console.log("Note deleted successfully");
+      });
+    });
+    res.json();
+});
 
 app.listen(PORT, () => {
   console.log(`Note taker app listening at http://localhost:${PORT}`);

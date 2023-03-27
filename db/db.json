@@ -1,22 +1,12 @@
 [
 	{
-		"title": "New note",
-		"text": "A new note",
-		"id": "dc6a381f-6f25-46ca-94c5-03f04d4be545"
-	},
-	{
 		"title": "Test note",
-		"text": "This is a test note",
-		"id": "673a38df-f1bc-408d-a79d-6e3c16368968"
+		"text": "text",
+		"id": "2c2b54f9-bed1-49fb-a758-5278cc3dbbcc"
 	},
 	{
-		"title": "Another test note",
-		"text": "This is another test note",
-		"id": "aae0b497-34d8-4327-8a99-8881c78a3d53"
-	},
-	{
-		"title": "Another note",
-		"text": "This is another note",
-		"id": "31c89d48-4f70-4dcb-bcb6-42f6d6fc6f61"
+		"title": "New note",
+		"text": "text",
+		"id": "844af420-e4e0-4956-8d6c-97ea192d7aae"
 	}
 ]
