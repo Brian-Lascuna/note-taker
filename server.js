@@ -32,20 +32,17 @@ app.post('/api/notes', (req, res) => {
       const newNote = {
         title,
         text,
-        note_id : uuidv4()
+        id : uuidv4()
       };
 
-      const db = fs.readFileSync('./db/db.json');
-      if (db.length == 0) {
-        fs.writeFile('./db/db.json', JSON.stringify(newNote));
-      } else {
-        const noteObj = JSON.parse(db);
-        noteObj.push(newNote);
-        fs.writeFile('./db/db.json', JSON.stringify(noteObj, null, "\t"), (err) => {
+      fs.readFile('./db/db.json', function (err, data) {
+        let json = JSON.parse(data);
+        json.push(newNote);
+        fs.writeFile('./db/db.json', JSON.stringify(json, null, "\t"), function (err) {
           if (err) throw err;
-          console.log('Note added successfully');
-        })
-      }
+          console.log("Note saved successfully!");
+        });
+      });
 
       const response = {
         status: 'success',
