@@ -1,3 +1,4 @@
+// Required imports
 const express = require('express');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+// GET routes for navigating the webpage
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -22,6 +24,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
   });
 
+// GET route for api database
 app.get('/api/notes', (req, res) => {
   fs.readFile('./db/db.json', function (err, data) {
     let json = JSON.parse(data);
@@ -29,6 +32,7 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
+// POST route to add new notes to database
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
 
@@ -60,6 +64,7 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
+// DELETE route to get rid of any notes
 app.delete('/api/notes/:id', (req, res) => {
     const noteID = req.params.id;
     console.log(noteID);
